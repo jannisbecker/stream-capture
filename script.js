@@ -1,4 +1,6 @@
 let videoElem = document.querySelector("#video");
+
+let fullscreenButton = document.querySelector("#fullscreen");
 let resolutionInput = document.querySelector("#videoResolution");
 let framerateInput = document.querySelector("#videoFramerate");
 
@@ -18,7 +20,14 @@ let constraints = {
       height: { exact: 720 },
     },
   ],
-  framerates: [60, 30, 25, 20, 10, 5],
+  framerates: [
+    { max: 60 },
+    { max: 30 },
+    { max: 25 },
+    // { max: 20 },
+    // { max: 10 },
+    // { max: 5 },
+  ],
 };
 
 let selectedResolution = 0,
@@ -45,8 +54,12 @@ async function updateStream() {
       videoElem.srcObject = stream;
 
       let streamConstraints = stream.getVideoTracks()[0].getConstraints();
+      console.log(stream.getVideoTracks()[0]);
+
+      console.log({ stream, streamConstraints });
 
       currentResolutionSpan.textContent = `${streamConstraints.width.exact}x${streamConstraints.height.exact}`;
+      currentFramerateSpan.textContent = `${streamConstraints.frameRate.max}fps`;
     })
     .catch((e) => {
       console.error(e);
@@ -57,21 +70,32 @@ function fillInputs() {
   constraints.resolution.forEach((constraint, i) => {
     resolutionInput.options[i] = new Option(
       `${constraint.width.exact}x${constraint.height.exact}`,
-      i
+      constraint.width.exact
     );
   });
 
-  constraints.framerates.forEach((framerate, i) => {
-    framerateInput.options[i] = new Option(`${framerate}fps`, framerate);
+  constraints.framerates.forEach((constraint, i) => {
+    framerateInput.options[i] = new Option(
+      `${constraint.max}fps`,
+      constraint.max
+    );
   });
 }
 
 resolutionInput.addEventListener("change", (event) => {
-  selectedResolution = event.target.value;
+  selectedResolution = event.target.selectedIndex;
   updateStream();
 });
 
 framerateInput.addEventListener("change", (event) => {
-  selectedFramerate = event.target.value;
+  selectedFramerate = event.target.selectedIndex;
   updateStream();
 });
+
+fullscreenButton.addEventListener("click", (event) => {
+  videoElem.requestFullscreen();
+});
+
+videoElem.onstalled = function (e) {
+  console.log(e);
+};

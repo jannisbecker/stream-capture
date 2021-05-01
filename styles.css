@@ -2,6 +2,8 @@ body {
   margin: 0;
   background: #232328;
   color: #eee;
+
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 div.wrapper {
@@ -22,14 +24,18 @@ div.controls-section {
   display: block;
 }
 
-div.controls-container {
+div.controls-grid {
   padding: 10px 0;
+  white-space: nowrap;
 
-  display: flex;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+
+  row-gap: 5px;
+  column-gap: 20px;
 }
 
-div.control-wrapper {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
+div.controls-grid div {
+  color: #4e4e5c;
+  font-size: 14px;
 }
