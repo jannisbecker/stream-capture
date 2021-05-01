@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="video-section">
+        <div class="wrapper"><video autoplay id="video"></video></div>
+    </div>
+    <div class="controls-section">
+        <div class="wrapper">
+            <div class="controls-container">
+                <div class="control-wrapper">
+                    <label for="#fullscreen">Fullscreen:</label>
+                    <button id="button-fullscreen">Enter</button>
+                    <div>s</div>
+                </div>
+                <div class="control-wrapper">
+                    <label for="#videoResolution">Resolution:</label>
+                    <select id="videoResolution"></select>
+                    <span>Current:</span><span id="currentResolution"></span>
+                </div>
+                <div class="control-wrapper">
+                    <label for="#videoFramerate">Framerate:</label>
+                    <select id="videoFramerate"></select>
+                    <span>Current:</span><span id="currentFramerate"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

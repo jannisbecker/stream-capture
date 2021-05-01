@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  background: #232328;
+  color: #eee;
+}
+
+div.wrapper {
+  margin: 0 auto;
+  max-width: 1280px;
+}
+
+div.video-section {
+  background: #000;
+}
+
+div.controls-section {
+  background: #151518;
+}
+
+#video {
+  width: 100%;
+  display: block;
+}
+
+div.controls-container {
+  padding: 10px 0;
+
+  display: flex;
+  gap: 20px;
+}
+
+div.control-wrapper {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
