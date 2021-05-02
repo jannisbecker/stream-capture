@@ -1,14 +1,14 @@
 {
-  "name": "game-capture",
+  "name": "stream-capture",
   "version": "1.0.0",
-  "description": "Stream your capture card input right to your browser, and share it everywhere!",
+  "description": "View, capture or record your webcam and game streams right in your browser!",
   "scripts": {
     "dev": "parcel src/index.html",
     "build": "parcel build ./src/index.html"
   },
-  "keywords": ["capture card", "game capture", "streaming", "recording"],
+  "keywords": ["capture card", "game capture", "streaming", "recording", "webcam", "live feed"],
   "author": "Jannis Becker",
-  "license": "ISC",
+  "license": "GNU GPLv3",
   "devDependencies": {
     "parcel-bundler": "^1.12.5",
     "sass": "^1.32.12",
