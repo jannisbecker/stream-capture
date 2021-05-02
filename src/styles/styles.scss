@@ -28,14 +28,11 @@ div.controls-grid {
   padding: 10px 0;
   white-space: nowrap;
 
-  display: grid;
-  grid-template-columns: repeat(3, min-content);
+  display: flex;
+  gap: 20px;
 
-  row-gap: 5px;
-  column-gap: 20px;
-}
-
-div.controls-grid div {
-  color: #4e4e5c;
-  font-size: 14px;
+  div.controls-item {
+    color: #4e4e5c;
+    font-size: 14px;
+  }
 }
