@@ -1,6 +1,7 @@
 let videoElem: HTMLVideoElement = document.querySelector("#video");
 let fullscreenButton: HTMLButtonElement = document.querySelector("#fullscreen");
 let videoModeInput: HTMLSelectElement = document.querySelector("#videoMode");
+let volumeInput: HTMLInputElement = document.querySelector("#volume");
 
 let testResolutions = [
   { width: { exact: 1920 }, height: { exact: 1080 } },
@@ -96,7 +97,8 @@ async function loadStream() {
     .then((stream) => {
       stream = stream;
       videoElem.srcObject = stream;
-    });
+    })
+    .catch(console.log);
 }
 
 async function restartStream() {
@@ -115,15 +117,21 @@ async function fillInputs() {
 }
 
 (async () => {
-  if (!window.localStorage.getItem("settings")) {
-    await askForDevices()
+  const firstTimeSetup = () =>
+    askForDevices()
       .then(() => findSupportedConstraints())
       .then(() => storeDeviceSettings());
-  }
 
-  await loadDeviceSettings()
-    .then(() => loadStream())
-    .then(() => fillInputs());
+  const streamSetup = () =>
+    loadDeviceSettings()
+      .then(() => loadStream())
+      .then(() => fillInputs());
+
+  if (!window.localStorage.getItem("settings")) {
+    return firstTimeSetup().then(() => streamSetup());
+  } else {
+    return streamSetup();
+  }
 })();
 
 videoModeInput.addEventListener("change", (event) => {
@@ -133,4 +141,16 @@ videoModeInput.addEventListener("change", (event) => {
 
 fullscreenButton.addEventListener("click", () => {
   videoElem.requestFullscreen();
+});
+
+videoElem.addEventListener("dblclick", () => {
+  if (!document.fullscreenElement) {
+    videoElem.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+});
+
+volumeInput.addEventListener("input", (event) => {
+  videoElem.volume = parseFloat((event.target as HTMLInputElement).value);
 });

@@ -31,8 +31,22 @@ div.controls-grid {
   display: flex;
   gap: 20px;
 
+  .pull-right {
+    margin-left: auto;
+  }
+
   div.controls-item {
     color: #4e4e5c;
     font-size: 14px;
+    display: table-cell;
+
+    & > * {
+      vertical-align: middle;
+    }
+
+    input[type="range"] {
+      margin: 0;
+      width: 80px;
+    }
   }
 }
