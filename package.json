@@ -6,7 +6,14 @@
     "dev": "parcel src/index.html",
     "build": "parcel build ./src/index.html"
   },
-  "keywords": ["capture card", "game capture", "streaming", "recording", "webcam", "live feed"],
+  "keywords": [
+    "capture card",
+    "game capture",
+    "streaming",
+    "recording",
+    "webcam",
+    "live feed"
+  ],
   "author": "Jannis Becker",
   "license": "GNU GPLv3",
   "devDependencies": {

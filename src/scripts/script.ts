@@ -6,6 +6,7 @@ let volumeInput: HTMLInputElement = document.querySelector("#volume");
 let testResolutions = [
   { width: { exact: 1920 }, height: { exact: 1080 } },
   { width: { exact: 1280 }, height: { exact: 720 } },
+  { width: { exact: 640 }, height: { exact: 480 } },
 ];
 let testFramerates = [{ exact: 60 }, { exact: 30 }, { exact: 25 }];
 
