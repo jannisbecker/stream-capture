@@ -1,9 +1,13 @@
 body {
   margin: 0;
-  background: #232328;
+  background: #131316;
   color: #eee;
 
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+div.video-section {
+  padding-top: 60px;
 }
 
 div.wrapper {
@@ -11,42 +15,51 @@ div.wrapper {
   max-width: 1280px;
 }
 
-div.video-section {
-  background: #000;
-}
-
-div.controls-section {
-  background: #151518;
-}
-
 #video {
   width: 100%;
   display: block;
+  box-shadow: 2px 2px 6px 4px rgba(0, 0, 0, 0.3);
+
+  aspect-ratio: 16 / 9;
 }
 
 div.controls-grid {
-  padding: 10px 0;
-  white-space: nowrap;
+  height: 60px;
 
   display: flex;
+  align-items: center;
   gap: 20px;
+
+  font-size: 16px;
+
+  i {
+    font-size: 24px;
+  }
 
   .pull-right {
     margin-left: auto;
   }
 
-  div.controls-item {
-    color: #4e4e5c;
-    font-size: 14px;
-    display: table-cell;
+  button,
+  select {
+    background: none;
+    border: none;
+    color: white;
+  }
 
-    & > * {
-      vertical-align: middle;
-    }
+  .control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
-    input[type="range"] {
-      margin: 0;
-      width: 80px;
+    opacity: 0.2;
+    transition: opacity 0.2s ease-in;
+    &:hover {
+      opacity: 1;
     }
+  }
+
+  div#select-videoMode {
+    gap: 8px;
   }
 }

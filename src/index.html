@@ -6,31 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Stream</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="styles/styles.scss">
+
 </head>
 
 <body>
     <div class="video-section">
         <div class="wrapper">
             <video autoplay id="video"></video>
-        </div>
-    </div>
-    <div class="controls-section">
-        <div class="wrapper">
             <div class="controls-grid">
-                <div class="controls-item">
-                    <label for="#fullscreen">Fullscreen</label>
-                    <button id="fullscreen">Enter</button>
+                <button class="control" id="fullscreen"><i class="fa fa-expand"></i> Fullscreen</button>
+                <div class="control" id="select-videoMode">
+                    <i class="fa fa-tv"></i>
+                    <select id="videoMode">
+                        <option>1920x1080@60</option>
+                    </select>
                 </div>
 
-                <div class="controls-item">
-                    <label for="#videoMode">Video Mode</label>
-                    <select id="videoMode"></select>
-                </div>
-
-                <div class="controls-item pull-right">
-                    <label for="#volume">Volume</label>
-                    <input type="range" min="0" max="1" value="1" step="0.01" autocomplete="off" id="volume">
+                <div class="controls-grid pull-right">
+                    <button class="control" id="screenshot"><i class="fa fa-camera"></i></button>
+                    <button class="control" id="record"><i class="fa fa-circle"></i></button>
+                    <button class="control" id="volume"><i class="fa fa-volume-up"></i></button>
                 </div>
             </div>
         </div>
