@@ -15,16 +15,17 @@
         <div class="wrapper">
             <video autoplay id="video"></video>
             <div class="controls-grid">
-                <button class="control" id="fullscreen"><i class="fa fa-expand"></i> Fullscreen</button>
-                <div class="control" id="select-videoMode">
+                <div class="control" id="fullscreen"><i class="fa fa-expand"></i> Fullscreen</div>
+
+                <div class="control" id="videoMode">
                     <i class="fa fa-tv"></i>
-                    <select id="videoMode"></select>
+                    <select></select>
                 </div>
 
-                <div class="controls-grid pull-right">
-                    <button class="control" id="screenshot"><i class="fa fa-camera"></i></button>
-                    <button class="control" id="record"><i class="fa fa-circle"></i></button>
-                    <button class="control" id="volume"><i class="fa fa-volume-up"></i></button>
+                <div class="right-grid">
+                    <div class="control" id="snapshot"><i class="fa fa-camera"></i></div>
+                    <div class="control" id="record"><i class="fa fa-circle"></i></div>
+                    <div class="control" id="volume"><i class="fa fa-volume-up"></i></div>
                 </div>
             </div>
         </div>

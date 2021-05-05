@@ -1,7 +1,11 @@
 let videoElem: HTMLVideoElement = document.querySelector("#video");
+
 let fullscreenButton: HTMLButtonElement = document.querySelector("#fullscreen");
-let videoModeInput: HTMLSelectElement = document.querySelector("#videoMode");
-let volumeInput: HTMLInputElement = document.querySelector("#volume");
+let videoModeSelect: HTMLSelectElement = document.querySelector(
+  "#videoMode select"
+);
+let snapshotButton: HTMLInputElement = document.querySelector("#snapshot");
+let volumeInput: HTMLInputElement = document.querySelector("#volume input");
 
 let testResolutions = [
   { width: { exact: 1920 }, height: { exact: 1080 } },
@@ -16,21 +20,6 @@ let supportedConstraints: MediaStreamConstraints[] = [];
 
 let stream: MediaStream;
 let selectedModeIndex = 0;
-
-/*
-  if device ids and constraints not in localstorage
-  - ask for any device with minimal constraints
-  - grab device ids
-  - search for capabilities of these devices
-  - push device ids and capabilities to localstorage
-
-  get constraints and device ids from localstorage
-  fill inputs with supported constraints
-  ask for devices by ids and first supported constraint
-
-  // have single select that shows framerate@fps
-  // have button to enter fullscreen, volume slider, screenshot and change device (clears localstorage and reloads)
-*/
 
 async function askForDevices() {
   return navigator.mediaDevices
@@ -99,7 +88,7 @@ async function loadStream() {
       stream = stream;
       videoElem.srcObject = stream;
     })
-    .catch(console.log);
+    .catch((e) => alert(e.message));
 }
 
 async function restartStream() {
@@ -113,7 +102,7 @@ async function fillInputs() {
   supportedConstraints.forEach((constraint, i) => {
     const modeText = `${constraint.video.width.exact}x${constraint.video.height.exact}@${constraint.video.frameRate.exact}`;
 
-    videoModeInput.options[i] = new Option(modeText, i);
+    videoModeSelect.options[i] = new Option(modeText, i);
   });
 }
 
@@ -135,13 +124,27 @@ async function fillInputs() {
   }
 })();
 
-videoModeInput.addEventListener("change", (event) => {
+videoModeSelect.addEventListener("change", (event) => {
   selectedModeIndex = (event.target as HTMLSelectElement).selectedIndex;
   restartStream();
 });
 
 fullscreenButton.addEventListener("click", () => {
   videoElem.requestFullscreen();
+});
+
+snapshotButton.addEventListener("click", () => {
+  const canvas = document.createElement("canvas");
+  canvas.width = videoElem.videoWidth;
+  canvas.height = videoElem.videoHeight;
+
+  const ctx = canvas.getContext("2d");
+  ctx.drawImage(videoElem, 0, 0);
+
+  const link = document.createElement("a");
+  link.href = canvas.toDataURL("image/png");
+  link.download = `screenshot_${+new Date()}.png`;
+  link.click();
 });
 
 videoElem.addEventListener("dblclick", () => {
@@ -152,6 +155,6 @@ videoElem.addEventListener("dblclick", () => {
   }
 });
 
-volumeInput.addEventListener("input", (event) => {
-  videoElem.volume = parseFloat((event.target as HTMLInputElement).value);
-});
+// volumeInput.addEventListener("input", (event) => {
+//   videoElem.volume = parseFloat((event.target as HTMLInputElement).value);
+// });
