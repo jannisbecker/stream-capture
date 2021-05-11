@@ -73,6 +73,30 @@ div.controls-grid {
       gap: 8px;
     }
 
+    &#record {
+      &.recording {
+        color: red;
+      }
+    }
+
+    &#volume {
+      gap: 0;
+
+      input {
+        margin-right: 0;
+        visibility: hidden;
+        width: 0;
+
+        transition: width 0.3s ease-in-out;
+      }
+
+      &:hover input {
+        margin-right: 5px;
+        visibility: visible;
+        width: 100px;
+      }
+    }
+
     opacity: 0.2;
     transition: opacity 0.2s ease-in;
     &:hover {
