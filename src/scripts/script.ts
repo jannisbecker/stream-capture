@@ -6,6 +6,7 @@ let videoModeSelect: HTMLSelectElement =
 let snapshotButton: HTMLInputElement = document.querySelector("#snapshot");
 let recordButton: HTMLInputElement = document.querySelector("#record");
 let volumeInput: HTMLInputElement = document.querySelector("#volume input");
+let resetSettingsButton: HTMLLinkElement = document.querySelector("#reset");
 
 /* Video recording data */
 let mediaRecorder: MediaRecorder;
@@ -201,7 +202,10 @@ function download(url, fileName) {
  * @param stream
  */
 function setupMediaRecorder(stream) {
-  mediaRecorder = new MediaRecorder(stream, { mimeType: "video/webm" });
+  mediaRecorder = new MediaRecorder(stream, {
+    mimeType: "video/webm",
+    videoBitsPerSecond: 8000000,
+  });
 
   mediaRecorder.ondataavailable = (evt) => {
     if (evt.data.size > 0) {
@@ -268,4 +272,10 @@ recordButton.addEventListener("click", () => {
 // Adjust the video volume when the volume slider value changes
 volumeInput.addEventListener("input", (event) => {
   videoElem.volume = parseFloat((event.target as HTMLInputElement).value);
+});
+
+// Allow resetting settings
+resetSettingsButton.addEventListener("click", () => {
+  window.localStorage.clear();
+  window.location.reload();
 });

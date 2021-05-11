@@ -104,3 +104,26 @@ div.controls-grid {
     }
   }
 }
+
+.bottom-text {
+  color: #4f4486;
+  font-size: 12px;
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+
+  opacity: 0.5;
+  &:hover {
+    opacity: 1;
+  }
+
+  a {
+    text-decoration: none;
+    color: #3e2ea7;
+
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
