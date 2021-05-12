@@ -21,5 +21,8 @@
     "parcel-bundler": "^1.12.5",
     "sass": "^1.32.12",
     "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "fix-webm-duration": "^1.0.0"
   }
 }

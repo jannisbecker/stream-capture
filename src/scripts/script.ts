@@ -1,3 +1,5 @@
+import ysFixWebmDuration from "fix-webm-duration";
+
 let videoElem: HTMLVideoElement = document.querySelector("#video");
 
 let fullscreenButton: HTMLButtonElement = document.querySelector("#fullscreen");
@@ -11,6 +13,7 @@ let resetSettingsButton: HTMLLinkElement = document.querySelector("#reset");
 /* Video recording data */
 let mediaRecorder: MediaRecorder;
 let recordedBlobs = [];
+let startTime;
 
 /* Constraints to test devices for */
 let testResolutions = [
@@ -219,6 +222,8 @@ function setupMediaRecorder(stream) {
  */
 function startRecording() {
   recordedBlobs = [];
+  startTime = Date.now();
+
   mediaRecorder.start(500);
 }
 
@@ -228,11 +233,15 @@ function startRecording() {
 function stopRecording() {
   mediaRecorder.stop();
 
-  var blob = new Blob(recordedBlobs, {
+  let duration = Date.now() - startTime;
+
+  let blob = new Blob(recordedBlobs, {
     type: "video/webm",
   });
 
-  download(URL.createObjectURL(blob), `recording_${+new Date()}.png`);
+  ysFixWebmDuration(blob, duration, (fixed) => {
+    download(URL.createObjectURL(fixed), `recording_${+new Date()}.png`);
+  });
 }
 
 // On changing the video mode, update selectedModeIndex and restart the stream
