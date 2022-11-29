@@ -240,7 +240,7 @@ function stopRecording() {
   });
 
   ysFixWebmDuration(blob, duration, (fixed) => {
-    download(URL.createObjectURL(fixed), `recording_${+new Date()}.png`);
+    download(URL.createObjectURL(fixed), `recording_${+new Date()}.webm`);
   });
 }
 
